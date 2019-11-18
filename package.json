@@ -5,11 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "elliptic": "^6.5.1",
-    "ethers": "^4.0.39",
     "express": "^4.17.1",
+    "ethers": "^4.0.39",
     "moment": "^2.24.0",
-    "nodemon": "^1.19.4",
-    "uuid": "^3.3.3"
+    "nodemon": "^1.19.4"
   },
   "devDependencies": {},
   "scripts": {
