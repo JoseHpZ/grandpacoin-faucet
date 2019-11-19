@@ -5,9 +5,10 @@ module.exports = Object.freeze({
         son: 1000,
         granSon: 1,
     },
-    value: 1,
+    value: '1000000',
     mininumTransactionFee: 10,
-    privKey: '0xc6265f206b856728dab72b49011b8346121db9b36f56c9a2b979f70a1409f007',
-    faucetAddress: "0xFe711fa35F0A060dAc55feDB68D52F610532bBC7",
-    compressedPublicKey: "03a899c574e39b7e37a35d969fa1f7b1beb7ff574f642b77a534ce1917ead1ad1"
+    privKey: '577216dab4fd6cd9958283b50d343163c7df0c059d187b883d814e4a5c3db27d',
+    faucetAddress: 'a6ef9089840a55ae5934b49e681ca6a60a7ebaec',
+    compressedPublicKey: '567096811729201b452affce5f08589993e1738c2799f1770316e3a00a1800760',
+    mnemonic: 'shift farm time clog alley thunder couple plunge dizzy task army lemon'
 })

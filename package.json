@@ -4,11 +4,14 @@
   "description": "grandpacoin",
   "main": "index.js",
   "dependencies": {
+    "bip32": "^2.0.4",
+    "bip39": "^3.0.2",
     "elliptic": "^6.5.1",
-    "express": "^4.17.1",
     "ethers": "^4.0.39",
+    "express": "^4.17.1",
     "moment": "^2.24.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "ripemd160": "^2.0.2"
   },
   "devDependencies": {},
   "scripts": {
