@@ -31,7 +31,7 @@ class Faucet {
         }).then(res => {
             return response.status(200).send({ txHash })
         }).catch(err => {
-            return response.status(400).send(err)
+            return response.status(400).send(err.message)
         });
     }
 }
