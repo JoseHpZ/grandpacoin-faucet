@@ -4,7 +4,8 @@ const { senderSignature } = require('../utils/function');
 
 class Transaction {
     constructor(to) {
-        this.to = to;
+        this.to = to.replace('0x', '');
+        this.dateCreated = new Date().toISOString();
         this.signTransaction = this.signTransaction.bind(this);
         this.getTransactionHash = this.getTransactionHash.bind(this);
     }
@@ -15,25 +16,25 @@ class Transaction {
             to: this.to,
             value: globalConfigs.value,
             fee: globalConfigs.mininumTransactionFee,
-            dateCreated: new Date().toISOString(),
+            dateCreated: this.dateCreated,
             data: 'Faucet tx',
             senderPubKey: globalConfigs.compressedPublicKey,
-            transactionDataHash: Transaction.getTransactionDataHash(this.to),
+            transactionDataHash: Transaction.getTransactionDataHash(this.to, this.dateCreated),
             senderSignature: this.signTransaction(this.to)
         }
     }
 
     getTransactionHash() {
-        return Transaction.getTransactionDataHash(this.to);
+        return Transaction.getTransactionDataHash(this.to, this.dateCreated);
     }
 
-    static getTransactionDataHash(to) {
+    static getTransactionDataHash(to, dateCreated) {
         return sha256(JSON.stringify({
             from: globalConfigs.faucetAddress,
             to,
             value: globalConfigs.value,
             fee: globalConfigs.mininumTransactionFee,
-            dateCreated: new Date().toISOString(),
+            dateCreated: dateCreated,
             data: 'Faucet tx',
             senderPubKey: globalConfigs.compressedPublicKey,
         }))
@@ -45,10 +46,9 @@ class Transaction {
             to,
             value: globalConfigs.value,
             fee: globalConfigs.mininumTransactionFee,
-            dateCreated: new Date().toISOString(),
+            dateCreated: this.dateCreated,
             data: 'Faucet tx',
             senderPubKey: globalConfigs.compressedPublicKey,
-            transferSuccessful: true
         }), globalConfigs.privKey));
     }
 }

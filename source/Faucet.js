@@ -11,7 +11,6 @@ class Faucet {
         this.newRequest = this.newRequest.bind(this);
     }
 
-
     newRequest(req, response) {
         let { toAddress, url } = req.body
 
@@ -21,19 +20,20 @@ class Faucet {
         if (this.blackList[toAddress])
             delete this.blackList[toAddress];
 
-
         this.blackList[toAddress] = new Date().toISOString();
         url = Url.parse(url);
-        let body = (new Transaction(toAddress)).getData();
-        let txHash = (new Transaction(toAddress)).signTransaction();
+        let transaction = new Transaction(toAddress);
+        let body = transaction.getData();
+        let txHash = transaction.getTransactionHash();
 
         Request.post(`/transactions/send`, {
             body
         }).then(res => {
-            return response.status(200).send(res)
+            return response.status(200).send({ txHash })
         }).catch(err => {
             return response.status(400).send(err)
         });
     }
 }
+
 module.exports = Faucet;
